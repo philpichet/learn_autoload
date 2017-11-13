@@ -1,18 +1,15 @@
-Ce projet est un apprentissage de l'utilisation des namespaces et de l'autoload.
+Voici la version avec l'autoload de composer.
 
-Il contient 3 branches :
-* La branche master qui apporte la structure du projet
-* La branche autoload qui explique comment faire et utilisé un autoload maison ( avec l'aide de spl_autoload_register)
-* La branche composer_autoload qui explique comment utiliser l'autoload de composer.
+Pour que notre code fonction, nous allons rajouté le fichier composer.json. Celui ci est remplit uniquement des besions pour l'autoload.
 
-Le projet est basé de la facon suivant 
-```
-Projet/
-	src/
-		Controller/
-			Controller.php
-		App.php
-	index.php
-```
-Pour l'utilisation des namespaces, le dossier src sera le namespace App
+Le contenu est le suivant :
+Nous appellons autoload, puis nous signalons utilisé le PSR-4 puis nous listons nos namespaces de la facon suivantes :
+"Namespace\\": "directory/"
+Cela permet à composer de savoir que, dans notre cas, le namespace App\ correspond au dossier src/. Attention au / et \ obligatoire.
 
+Pour créer l'autoload, nouos n'avons plus qu'à lancé la commande 
+```composer dump-autoload```
+Elle aura pôur efffet de créer un dossier vendor qui contiendra toutes les dépendances ainsi que le fichier autoload.php
+Noter que si vous utiliser aussi composer pour ajouter des librairies et que vous faites la commande ```composer install|update``` cela aura le même effet.
+
+Il ne nous reste plus qu'à require le fichier autoload.php de composer situé dans le dossier vendor qui a été créer afin de pouvoir l'utiliser.
