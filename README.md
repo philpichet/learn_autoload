@@ -1,11 +1,18 @@
-Voici la version avec un autoload maison.
+Ce projet est un apprentissage de l'utilisation des namespaces et de l'autoload.
 
-Pour que notre code fonction, nous allons rajouté le fichier autoload.php qui contient deux parties.
+Il contient 3 branches :
+* La branche master qui apporte la structure du projet
+* La branche autoload qui explique comment faire et utilisé un autoload maison ( avec l'aide de spl_autoload_register)
+* La branche composer_autoload qui explique comment utiliser l'autoload de composer.
 
-* La premiére partie est un fonction qu'on a décidé d'appeller autoload. Elle contient comme parametre $classname qui correspond au namespace de la class. 
-Elle a pour effet de retirer la premiere partie du namespace, ici App, puis de remplacer les \ en / pour avoir un chemin de type Unix. On concatene la contante __DIR__  le dossier principal ( sr/ dans notre cas) et le resultat afin d'obtenir  le nom complet du fichier. 
-Si le fichier exist, et donc notre class aussi, on require le fichier pour permettre d'utilisé notre class dans le reste de notre code.
+Le projet est basé de la facon suivant 
+```
+Projet/
+	src/
+		Controller/
+			Controller.php
+		App.php
+	index.php
+```
+Pour l'utilisation des namespaces, le dossier src sera le namespace App
 
-* La deuxième partie est l'utilisation de la fonction native PHP, spl_autoload_register. Il s'agit d'une fonction permettant d'avoir plusieur autoloaders, utilie quand on utilise plusieurs librairie ou namespace. On passe simplement notre fonction en parametre et PHP s'occupe du reste.
-
-Il ne nous reste plus qu'à require le fichier autoload.php afin de pouvoir l'utiliser.
